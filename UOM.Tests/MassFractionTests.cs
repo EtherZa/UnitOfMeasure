@@ -1,10 +1,9 @@
 ﻿namespace UOM.Tests
 {
+    using Helper;
     using NUnit.Framework;
-    using UOM;
-    using UOM.Tests.Helper;
 
-    public class MassFractionTest : BaseUnitTest<MassFraction>
+    public class MassFractionTests : BaseUnitTest<MassFraction>
     {
         [TestCase("4g/t", "0.0004%")]
         [TestCase("1g/t", "1ppm")]

@@ -6,16 +6,17 @@
 
   <ItemGroup>
     <PackageReference Include="fluentassertions" Version="5.10.3" />
-    <PackageReference Include="Moq" Version="4.16.1" />
     <PackageReference Include="nunit" Version="3.13.2" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
+    <PackageReference Include="protobuf-net" Version="3.0.101" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\UOM.Converters.ProtbufNet\UOM.Converters.ProtbufNet.csproj" />
     <ProjectReference Include="..\UOM\UOM.csproj" />
   </ItemGroup>
 

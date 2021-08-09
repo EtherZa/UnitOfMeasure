@@ -1,8 +1,7 @@
 ﻿namespace UOM.Tests
 {
+    using Helper;
     using NUnit.Framework;
-    using UOM;
-    using UOM.Tests.Helper;
 
     public class MassTests : BaseUnitTest<Mass>
     {
@@ -14,6 +13,7 @@
         [TestCase("1000kg", "1t")]
         [TestCase("1kg", "35.2739619495804oz")]
         [TestCase("1kg", "2.20462262184878lb")]
+        [TestCase("1lb", "0.45359237kg")]
         [TestCase("1t", "1000000g")]
         [TestCase("1t", "1000kg")]
         [TestCase("1t", "35273.9619495804oz")]
@@ -22,6 +22,9 @@
         [TestCase("100oz", "2.8349523125kg")]
         [TestCase("100oz", "0.0028349523125t")]
         [TestCase("100oz", "6.25lb")]
+        [TestCase("1lt", "1016.0469088kg")]
+        [TestCase("1lt", "1.12sht")]
+        [TestCase("1sht", "907.18474kg")]
         public override void Conversion(string source, string expected)
         {
             base.Conversion(source, expected);

@@ -1,8 +1,7 @@
 ﻿namespace UOM.Tests
 {
+    using Helper;
     using NUnit.Framework;
-    using UOM;
-    using UOM.Tests.Helper;
 
     public class PercentTests : BaseUnitTest<Percent>
     {

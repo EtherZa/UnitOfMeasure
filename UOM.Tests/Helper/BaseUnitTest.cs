@@ -1,8 +1,7 @@
 ﻿namespace UOM.Tests.Helper
 {
-using System.Globalization;
+    using System.Globalization;
     using FluentAssertions;
-    using UOM;
 
     public abstract class BaseUnitTest<T>
         where T : Unit
@@ -11,13 +10,13 @@ using System.Globalization;
 
         public virtual void Add(string left, string right, string expected)
         {
-            var leftUnit = Unit.Parse<T>(left, NumberFormatInfo.InvariantInfo);
-            var rightUnit = Unit.Parse<T>(right, NumberFormatInfo.InvariantInfo);
-            var expectedUnit = Unit.Parse<T>(expected, NumberFormatInfo.InvariantInfo);
+            var leftQuantity = Quantity<T>.Parse(left, NumberFormatInfo.InvariantInfo);
+            var rightQuantity = Quantity<T>.Parse(right, NumberFormatInfo.InvariantInfo);
+            var expectedUnit = Quantity<T>.Parse(expected, NumberFormatInfo.InvariantInfo);
 
-            var actual = leftUnit.Add(rightUnit);
+            var actual = leftQuantity.Add(rightQuantity);
 
-            actual.Unit.Should().Be(leftUnit.Unit);
+            actual.Unit.Should().Be(leftQuantity.Unit);
 
             var convertedActual = actual.As(expectedUnit.Unit);
             convertedActual.Unit.Should().BeEquivalentTo(expectedUnit.Unit);
@@ -26,26 +25,26 @@ using System.Globalization;
 
         public virtual void Conversion(string source, string expected)
         {
-            var expectedUnit = Unit.Parse<T>(expected, NumberFormatInfo.InvariantInfo);
-            var actual = Unit.Parse<T>(source, NumberFormatInfo.InvariantInfo).As(expectedUnit.Unit);
+            var expectedQuantity = Quantity<T>.Parse(expected, NumberFormatInfo.InvariantInfo);
+            var actual = Quantity<T>.Parse(source, NumberFormatInfo.InvariantInfo).As(expectedQuantity.Unit);
 
-            actual.Unit.Should().BeEquivalentTo(expectedUnit.Unit);
-            actual.Value.Should().BeApproximately(expectedUnit.Value, _precision);
+            actual.Unit.Should().BeEquivalentTo(expectedQuantity.Unit);
+            actual.Value.Should().BeApproximately(expectedQuantity.Value, _precision);
         }
 
         public virtual void Subtract(string left, string right, string expected)
         {
-            var leftUnit = Unit.Parse<T>(left, NumberFormatInfo.InvariantInfo);
-            var rightUnit = Unit.Parse<T>(right, NumberFormatInfo.InvariantInfo);
-            var expectedUnit = Unit.Parse<T>(expected, NumberFormatInfo.InvariantInfo);
+            var leftQuantity = Quantity<T>.Parse(left, NumberFormatInfo.InvariantInfo);
+            var rightQuantity = Quantity<T>.Parse(right, NumberFormatInfo.InvariantInfo);
+            var expectedQuantity = Quantity<T>.Parse(expected, NumberFormatInfo.InvariantInfo);
 
-            var actual = leftUnit.Subtract(rightUnit);
+            var actual = leftQuantity.Subtract(rightQuantity);
 
-            actual.Unit.Should().Be(leftUnit.Unit);
+            actual.Unit.Should().Be(leftQuantity.Unit);
 
-            var convertedActual = actual.As(expectedUnit.Unit);
-            convertedActual.Unit.Should().BeEquivalentTo(expectedUnit.Unit);
-            convertedActual.Value.Should().BeApproximately(expectedUnit.Value, _precision);
+            var convertedActual = actual.As(expectedQuantity.Unit);
+            convertedActual.Unit.Should().BeEquivalentTo(expectedQuantity.Unit);
+            convertedActual.Value.Should().BeApproximately(expectedQuantity.Value, _precision);
         }
     }
 }
